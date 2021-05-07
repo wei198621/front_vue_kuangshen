@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--view层-->
+<div id="app">
+    <!--普通方法下发 ***()-->
+    {{ byMethodsTime1() }}
+    <br>
+    <!--计算属性写法 *** -->
+    {{ byComputedTime1 }}
+</div>
+<!--导入VUE.JS-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js "></script>
+<script>
+    // model 层
+    var vmdata={
+        message: "abc",
+
+    }
+    //  ViewModel 层
+    var vm=new Vue({
+        el:"#app",
+        data:vmdata,
+        methods:{
+            byMethodsTime1:function(){
+                return Date.now();
+            }
+        },
+        computed:{   //计算属性的结果会缓存起来，直到输入值有变化，才会更新，此处用date，不太明显
+            byComputedTime1: function(){
+                return Date.now();
+            }
+        }
+    })
+</script>
+</body>
+</html>

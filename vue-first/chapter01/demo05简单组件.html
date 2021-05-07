@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--view层-->
+<div id="app">
+    <!--最基本的v-for 语句 -->
+    <div v-for="(item, index) in items">
+    {{ index }}---- {{ item }}
+    </div>
+    <hr>
+    <hr>
+    <hr>
+    <!--自定义控件  first-vue-component     将字符串myHeader1 传递给 header1 属性 props -->
+    <first-vue-component header1="myHeader1"></first-vue-component>
+    <hr>
+    <!--自定义控件  first-vue-component     将字符串tempHeader的值（headerTest）  传递给 header1 属性 props -->
+    <first-vue-component v-bind:header1="tempHeader"></first-vue-component>
+    <first-vue-component :header1="tempHeader"></first-vue-component>
+
+    <!--比较上面两个赋值，发现，如果直接给属性赋值，等于号后面的作为字符串处理-->
+    <!--如果 使用v-bind: 给某个属性赋值， 等于号后面的作为 （ model 层的）变量来看待 -->
+    <hr>
+    <hr>
+    <hr>
+    <!--将页面的items 列表 内容 传递给 item 变量，将 item 变量 赋值给 header1 -->
+    <!--header1 是  first-vue-component 中定义的 props 中的一个， 用于传值-->
+    <!---->
+    <first-vue-component v-for="(item, index) in items" v-bind:header1="item" ></first-vue-component>
+    <hr>
+</div>
+<!--导入VUE.JS-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js "></script>
+<script>
+    Vue.component("first-vue-component",{
+        data:function(){
+            return{
+            }
+        },
+        props:['header1'],
+        template:'<div><div>{{ header1 }}</div><div>body</div><div>footer</div><br></div>',
+
+    });
+
+
+    // model 层
+    var vmdata={
+        tempHeader: "headerTest",
+        items:["java","c++","linux"],
+
+    }
+    //  ViewModel 层
+    var vm=new Vue({
+        el:"#app",
+        data:vmdata,
+    })
+</script>
+</body>
+</html>

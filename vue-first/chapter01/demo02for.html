@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--view层-->
+<div id="app">
+    <div v-for="item in items">
+        ---{{ item.key}}----{{ item.message }}---{{ item.name}}----
+    </div>
+</div>
+<!--导入VUE.JS-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js "></script>
+<script>
+    // model 层
+    var vmdata={
+        items : [
+            {message: "this is one ",name : "name1",key:"key1"},
+            {message: "this is two ",name : "name2",key:"key2"},
+            {message: "this is three ",name : "name3",key:"key3"},
+            {message: "this is four ",name : "name4",key:"key4"},
+        ]
+
+    }
+    //  ViewModel 层
+    var vm=new Vue({
+        el:"#app",
+        data:vmdata,
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--view层-->
+<!--<div id="app">-->
+    <!--<p>列表书籍</p>-->
+    <!--<ul>-->
+        <!--<li>Java</li>-->
+        <!--<li>Linux</li>-->
+        <!--<li>Python</li>-->
+    <!--</ul>-->
+<!--</div>-->
+<div id="app">
+    <books>
+        <!--将 model层的数据  data_book_header: "leo读书列表", 传递给 视图 books-header -->
+        <books-header slot="books-header" v-bind:prop_book_header="data_book_header" ></books-header>
+        <!--将 model层的数据  data_book_items: ['中国心绞痛','GUTISKA','钱币收藏册'], 传递给 视图 book-body-->
+        <books-body slot="books-body" v-for="(book_item,book_index) in data_book_items"
+                    v-bind:prop_book_name="book_item"
+                    v-bind:prop_book_index="book_index"
+                    v-on:inner_del_emit="out_del(book_index)"
+        ></books-body>
+    </books>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js "></script>
+<script>
+    Vue.component("books",{
+        template:'<div>\
+                    <slot name="books-header" ></slot>\
+                    <ul>\
+                        <slot name="books-body" ></slot>\
+                    </ul>\
+                </div>\    '
+    });
+    Vue.component("books-header",{
+        props: ['prop_book_header'],                    //属性 prop_book_header  用于数据交互
+        template:'<p>{{ prop_book_header }} </p>  '
+    });
+    Vue.component("books-body",{
+        props: ['prop_book_name','prop_book_index'],                       //属性 prop_book_name   用于数据交互
+        template:'<li>{{ prop_book_index }}----{{ prop_book_name }}--- <button v-on:click="inner_del">删除</button></li>   ',
+        methods: {
+            inner_del: function(){
+                this.$emit("inner_del_emit");  //组件删除vue实例中的数据，通过 事件分发，this.$emit('自定义事件名'，参数)，
+            }
+        }
+    });
+    var vmdata={        // model 层
+        data_book_header: "leo读书列表",
+        data_book_items: ['中国心绞痛','GUTISKA','钱币收藏册'],
+    }
+    var vm=new Vue({     //  ViewModel 层
+        el:"#app",
+        data:vmdata,
+        methods: {
+            out_del : function(index ){
+                vm.data_book_items.splice(index,1);
+            }
+        }
+    })
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

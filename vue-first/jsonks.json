@@ -1,0 +1,25 @@
+{
+  "name": "狂神说Java--狗剩study",
+  "url": "https://blog.kuangstudy.com",
+  "page": 1,
+  "isNonProfit": true,
+  "address": {
+    "street": "姑苏路07号",
+    "city": "江苏",
+    "country": "中国"
+  },
+  "links": [
+    {
+      "name": "bilibili",
+      "ur1": "https://space.bilibili.com/95256449"
+    },
+    {
+      "name": "狂伸说java",
+      "ur1": "https://blog.kuangstudy.com"
+    },
+    {
+      "name": "百度",
+      "ur1": "https://www.baidu.com/"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--view层-->
+<!--<div id="app">-->
+    <!--<p>列表书籍</p>-->
+    <!--<ul>-->
+        <!--<li>Java</li>-->
+        <!--<li>Linux</li>-->
+        <!--<li>Python</li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+
+<div id="app">
+    <books>
+        <!--将 model层的数据  data_book_header: "leo读书列表", 传递给 视图 books-header -->
+        <books-header slot="books-header" v-bind:prop_book_header="data_book_header" ></books-header>
+        <!--将 model层的数据  data_book_items: ['中国心绞痛','GUTISKA','钱币收藏册'], 传递给 视图 book-body-->
+        <books-body slot="books-body" v-for="book_item in data_book_items"  v-bind:prop_book_name="book_item"></books-body>
+    </books>
+</div>
+<!--导入VUE.JS-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js "></script>
+<script>
+    Vue.component("books",{
+        template:'<div>\
+                    <slot name="books-header" ></slot>\
+                    <ul>\
+                        <slot name="books-body" ></slot>\
+                    </ul>\
+                </div>\    '
+    });
+    Vue.component("books-header",{
+        props: ['prop_book_header'],                    //属性 prop_book_header  用于数据交互
+        template:'<p>{{ prop_book_header }} </p>  '
+    });
+    Vue.component("books-body",{
+        props: ['prop_book_name'],                       //属性 prop_book_name   用于数据交互
+        template:'<li>{{ prop_book_name }}</li>   '
+    });
+    var vmdata={        // model 层
+        data_book_header: "leo读书列表",
+        data_book_items: ['中国心绞痛','GUTISKA','钱币收藏册'],
+    }
+    var vm=new Vue({     //  ViewModel 层
+        el:"#app",
+        data:vmdata,
+    })
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

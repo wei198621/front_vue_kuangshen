@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--view层-->
+<div id="app">
+    <br>
+    <!--input radio 使用v-model的时候，会将 value的值 传递给 v-model 绑定的 model 层对象 -->
+    <input type="radio" name="sex" value="男" v-model="radioChecked" > 男
+    <input type="radio" name="sex" value="女" v-model="radioChecked"> 女
+    radio  checked:{{ radioChecked }}
+    <hr>
+
+    <!--select 标准示例  注意第一项 disabled -->
+    <select v-model="selectValue">
+        <option value="" disabled>==请选择==</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    select value is {{ selectValue }}
+</div>
+<!--导入VUE.JS-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js "></script>
+<script>
+    // model 层
+    var vmdata={
+        message: "abc",
+        radioChecked: "",
+        selectValue: "",
+
+    }
+    //  ViewModel 层
+    var vm=new Vue({
+        el:"#app",
+        data:vmdata,
+    })
+</script>
+</body>
+</html>

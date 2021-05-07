@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--style 中定义 v-clock ，将其赋值给此处，可以让屏幕不闪屏，开始不显示，直接显示加载结果-->
+
+<div id="vue">
+    <div>{{ info.name}}</div>
+    <div>{{ info.url}}</div>
+    <div>{{ info.address.street}}</div>
+    <a v-bind:href="info.url">点我1</a>
+    <a :href="info.url">点我2</a>
+    <a :href="info.url">点我3</a>
+</div>
+
+<style>
+    [v-clock]{
+        display: none;
+    }
+</style>
+
+<!--导入VUE.JS-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js "></script>
+<!--导入 axios cdn -->
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+<script type="text/javascript">
+
+    var vm =new Vue({
+        el: "#vue",
+        data(){
+          return {
+              info:{
+                  name: null,
+                  url: null,
+                  address:{
+                      street: null,
+                      city: null,
+                      country: null,
+                  }
+              }
+          }
+        },
+        mounted(){  // 钩子函数   链式编程     基于 ES6 新特性
+          axios.get("../jsonks.json")
+              .then(response=>(
+              //console.log(response.data);
+              this.info=response.data
+          ))
+        },
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--view层-->
+<div id="app">
+    {{ message }}
+    <hr>
+    <button id="btn1" v-on:click="sayHi">click me</button>
+</div>
+<!--导入VUE.JS-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js "></script>
+<script>
+    // model 层
+    var vmdata={
+        message: "abc",
+
+    };
+
+    var vmmethod={
+        sayHi: function(){
+            alert("3333");
+        }
+    }
+    //  ViewModel 层
+    var vm=new Vue({
+        el:"#app",
+        data:vmdata,
+        methods:vmmethod,  //注意是methods  ， 不是 method
+    })
+</script>
+</body>
+</html>

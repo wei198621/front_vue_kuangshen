@@ -1,0 +1,1 @@
+(()=>{var r,t={645:(r,t)=>{t.sayHi=function(){document.write("<h1>狂神说ES6</h1>")},t.sayHi2=function(){document.write("<h1>狂神说ES6  2222</h1>")}}},i={};(r=function r(e){var n=i[e];if(void 0!==n)return n.exports;var o=i[e]={exports:{}};return t[e](o,o.exports,r),o.exports}(645)).sayHi(),r.sayHi2()})();
